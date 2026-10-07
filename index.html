@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siya Kundu - Personal Portfolio</title>
+  <style>
+    :root {
+      --bg: #090611;
+      --card-bg: rgba(26, 16, 38, 0.75);
+      --border: rgba(236, 72, 153, 0.25);
+      --primary: #ec4899;
+      --primary-glow: rgba(236, 72, 153, 0.35);
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.35);
+      --text: #fdf2f8;
+      --subtext: #f472b6;
+      --muted: #9d8ba7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 10%, #2a0826, #090611 80%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Floating Navigation */
+    nav {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 900px;
+      background: rgba(15, 9, 25, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 26px;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: 1.5px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 110px 20px 40px;
+    }
+
+    section {
+      margin-bottom: 70px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 22px;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 36px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 40px 10px 30px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 24px;
+    }
+
+    .avatar-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      z-index: 1;
+      opacity: 0.8;
+      filter: blur(8px);
+    }
+
+    .profile-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      z-index: 2;
+      background: #1a1026;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(236, 72, 153, 0.1);
+      border: 1px solid rgba(236, 72, 153, 0.25);
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 18px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary);
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .headline-tag {
+      font-size: 15px;
+      font-weight: 500;
+      color: #e2e8f0;
+      max-width: 680px;
+      margin: 0 auto 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .btn-gradient {
+      padding: 12px 26px;
+      background: linear-gradient(135deg, var(--primary), #d946ef);
+      color: #ffffff;
+      border: none;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 13px;
+      box-shadow: 0 4px 20px var(--primary-glow);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-outline {
+      padding: 12px 26px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-gradient:hover, .btn-outline:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Cards */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .glass-card p {
+      color: #e2e8f0;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    /* Skills Grid */
+    .skills-cluster {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+    }
+
+    .skill-chip {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 14px 10px;
+      border-radius: 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 13px;
+      color: #f3f4f6;
+      transition: all 0.2s ease;
+    }
+
+    .skill-chip:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+
+    .project-box:hover {
+      transform: translateY(-5px);
+      border-color: rgba(236, 72, 153, 0.5);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-box h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .project-box p {
+      color: var(--muted);
+      font-size: 13.5px;
+      margin-bottom: 16px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tag-bubble {
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(168, 85, 247, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .project-actions a {
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      transition: background 0.2s ease;
+    }
+
+    .project-actions a:hover {
+      background: var(--primary);
+    }
+
+    /* Contact Form */
+    .form-field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--subtext);
+      margin-bottom: 6px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(9, 6, 17, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 95px;
+    }
+
+    #console-output {
+      display: none;
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(9, 6, 17, 0.9);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="nav-logo">SIYA KUNDU</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="avatar-wrapper">
+        <img src="profile.jpg" alt="Siya Kundu" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=60'">
+      </div>
+      <div class="status-pill">
+        <span class="status-dot"></span> Open for Collaborations
+      </div>
+      <h1>Hello, I'm <span>Siya Kundu</span></h1>
+      <p class="headline-tag">
+        Creative Designer & Web Enthusiast || Crafting High-Impact Digital Experiences & Elegant Solutions
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-gradient">View Work</a>
+        <a href="#contact" class="btn-outline">Contact Me</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="glass-card">
+        <p>
+          Welcome! I am Siya Kundu, a dedicated individual with a passion for web design, digital creativity, and modern interface development.
+        </p>
+        <p>
+          I focus on transforming complex ideas into intuitive, aesthetically pleasing, and user-friendly digital products with attention to every detail.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2 class="section-title">Skills & Expertise</h2>
+      <div class="skills-cluster">
+        <div class="skill-chip">UI/UX Design</div>
+        <div class="skill-chip">HTML5 & CSS3</div>
+        <div class="skill-chip">JavaScript (ES6+)</div>
+        <div class="skill-chip">Responsive Web</div>
+        <div class="skill-chip">Git & GitHub</div>
+        <div class="skill-chip">Creative Problem Solving</div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2 class="section-title">Featured Work</h2>
+      <div class="projects-grid">
+
+        <div class="project-box">
+          <div>
+            <h3>Modern Web Application</h3>
+            <p>An interactive, highly responsive web interface built with modern aesthetic guidelines and smooth animations.</p>
+            <div class="tags">
+              <span class="tag-bubble">JavaScript</span>
+              <span class="tag-bubble">CSS Grid</span>
+              <span class="tag-bubble">UI/UX</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="#" target="_blank">Live Demo</a>
+            <a href="#" target="_blank">Source Code</a>
+          </div>
+        </div>
+
+        <div class="project-box">
+          <div>
+            <h3>Digital Experience Suite</h3>
+            <p>A collection of lightweight front-end components tailored for optimized browser performance and usability.</p>
+            <div class="tags">
+              <span class="tag-bubble">HTML5</span>
+              <span class="tag-bubble">DOM API</span>
+              <span class="tag-bubble">Glassmorphism</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="#" target="_blank">Live Demo</a>
+            <a href="#" target="_blank">Source Code</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="glass-card">
+        <form id="contact-form" onsubmit="processMessage(event)">
+          <div class="form-field">
+            <label for="client-name">Your Name</label>
+            <input type="text" id="client-name" placeholder="Enter your full name..." required>
+          </div>
+
+          <div class="form-field">
+            <label for="client-email">Email Address</label>
+            <input type="email" id="client-email" placeholder="name@domain.com" required>
+          </div>
+
+          <div class="form-field">
+            <label for="client-msg">Your Message</label>
+            <textarea id="client-msg" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-gradient" style="width: 100%;">Send Message</button>
+        </form>
+
+        <div id="console-output">
+          <div id="output-text"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Siya Kundu. All rights reserved. Deployed via GitHub Pages.</p>
+  </footer>
+
+  <script>
+    function processMessage(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('client-name').value.trim();
+      const email = document.getElementById('client-email').value.trim();
+      const outputBox = document.getElementById('console-output');
+      const outputText = document.getElementById('output-text');
+
+      outputText.innerHTML = `
+        <p style="color: var(--primary); font-weight: bold; margin-bottom: 6px;">Thank you, ${name}!</p>
+        <p style="font-size: 13.5px; color: #e2e8f0;">Your transmission has been logged. I will contact you at <strong>${email}</strong> shortly.</p>
+      `;
+
+      outputBox.style.display = 'block';
+      document.getElementById('contact-form').reset();
+    }
+  </script>
+</body>
+  </html>
